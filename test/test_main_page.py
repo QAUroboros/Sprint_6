@@ -17,13 +17,6 @@ class TestMainPageFAQ:
     def teardown_class(cls):
         cls.driver.quit()
 
-    def test_first_faq(self):
-        self.main_page.click_first_faq_button()
-        time.sleep(3)
-        panel_text = self.main_page.get_first_panel_text()
-        expected_text = "Сутки — 400 рублей. Оплата курьеру — наличными или картой."
-        assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
-
     def test_second_faq(self):
         self.main_page.click_second_faq_button()
         time.sleep(3)
@@ -43,7 +36,6 @@ class TestMainPageFAQ:
 
     def test_fourth_faq(self):
         self.main_page.click_fourth_faq_button()
-        time.sleep(5)
         panel_text = self.main_page.get_fourth_panel_text()
         expected_text = "Только начиная с завтрашнего дня. Но скоро станем расторопнее."
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
@@ -77,4 +69,11 @@ class TestMainPageFAQ:
         time.sleep(5)
         panel_text = self.main_page.get_eighth_panel_text()
         expected_text = "Да, обязательно. Всем самокатов! И Москве, и Московской области."
+        assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
+
+    def test_first_faq(self):
+        self.main_page.click_first_faq_button()
+        time.sleep(3)
+        panel_text = self.main_page.get_first_panel_text()
+        expected_text = "Сутки — 400 рублей. Оплата курьеру — наличными или картой."
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"

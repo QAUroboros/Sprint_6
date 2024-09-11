@@ -12,19 +12,19 @@ class MainPage:
     three_faq_button = (By.ID, "accordion__heading-2")
     panel_order_info_2 = (By.ID, "accordion__panel-2")
 
-    four_faq_button = (By.ID, "accordion__panel-3")
+    four_faq_button = (By.ID, "accordion__heading-3")
     panel_order_info_3 = (By.ID, "accordion__panel-3")
 
-    five_faq_button = (By.ID, "accordion__panel-4")
+    five_faq_button = (By.ID, "accordion__heading-4")
     panel_order_info_4 = (By.ID, "accordion__panel-4")
 
-    six_faq_button = (By.ID, "accordion__panel-5")
+    six_faq_button = (By.ID, "accordion__heading-5")
     panel_order_info_5 = (By.ID, "accordion__panel-5")
 
-    seven_faq_button = (By.ID, "accordion__panel-6")
+    seven_faq_button = (By.ID, "accordion__heading-6")
     panel_order_info_6 = (By.ID, "accordion__panel-6")
 
-    eight_faq_button = (By.ID, "accordion__panel-7")
+    eight_faq_button = (By.ID, "accordion__heading-7")
     panel_order_info_7 = (By.ID, "accordion__panel-7")
 
     def __init__(self, driver):
