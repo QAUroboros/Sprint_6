@@ -1,7 +1,5 @@
 import time
-
 from selenium import webdriver
-
 from page_object.main_page_object import MainPage
 
 
