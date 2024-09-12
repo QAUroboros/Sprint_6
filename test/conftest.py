@@ -1,21 +1,32 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-import random
-from base_page import BASE_URL
+
 
 @pytest.fixture
 def open_browser():
-    driver = webdriver.Chrome()
-    driver.get(BASE_URL)
+    driver = webdriver.Firefox()
+    driver.get("https://qa-scooter.praktikum-services.ru/")
     WebDriverWait(driver, 10)
     yield driver
     driver.quit()
 
 @pytest.fixture
-def generate_registration_data():
+def order_data_1():
     return {
-        "name": "Артём",
-        "email": f"ArtemKrivoshein13{random.randint(100, 999)}@yandex.ru",
-        "password": "123456"
+        "name": "Иван",
+        "surname": "Иванов",
+        "address": "ул. Ленина, д. 1",
+        "phone": "+77001112233",
+        "metro_station": "Октябрьская"
+    }
+
+@pytest.fixture
+def order_data_2():
+    return {
+        "name": "Анна",
+        "surname": "Смирнова",
+        "address": "ул. Гагарина, д. 5",
+        "phone": "+77005556677",
+        "metro_station": "Таганская"
     }
