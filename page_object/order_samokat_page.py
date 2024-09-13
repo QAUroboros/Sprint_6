@@ -1,4 +1,8 @@
+import time
+from telnetlib import EC
+
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class OrderSamokatPage :
@@ -6,12 +10,13 @@ class OrderSamokatPage :
     order_button_1 = (By.XPATH, "//div[@class='Header_Nav__AGCXC']//button[@class='Button_Button__ra12g']")
     order_button_2 = (By.XPATH, "//div[@class='Home_FinishButton__1_cWm']//button")
     order_header = (By.CLASS_NAME, 'Order_Header__BZXOb')
+    cokies_button = (By.ID, "rcc-confirm-button")
     name_form = (By.CSS_SELECTOR, "input[placeholder='* Имя']")
     surname_form = (By.CSS_SELECTOR, "input[placeholder='* Фамилия']")
     address_form = (By.CSS_SELECTOR, "input[placeholder='* Адрес: куда привезти заказ']")
     metro_station = (By.CSS_SELECTOR, "input[placeholder='* Станция метро']")
     phone_number = (By.CSS_SELECTOR, "input[placeholder='* Телефон: на него позвонит курьер']")
-    button_next_form = (By.XPATH, "//button[text()='далее'")
+    button_next_form = (By.XPATH, "//button[contains(text(),'Далее')]")
     rent_header = (By.CLASS_NAME, "Order_Header__BZXOb")
     delivery_samokat_form = (By.CSS_SELECTOR, "input[placeholder='* Когда привезти самокат']")
     rent_form = (By.CLASS_NAME, "Dropdown-placeholder")
@@ -34,6 +39,9 @@ class OrderSamokatPage :
     def get_order_header_text(self):
         return self.driver.find_element(*self.order_header).text
 
+    def click_cokies_button(self):
+        self.driver.find_element(*self.cokies_button).click()
+
     def enter_name(self, name):
         name_field = self.driver.find_element(*self.name_form)
         name_field.clear()
@@ -50,9 +58,15 @@ class OrderSamokatPage :
         name_field.send_keys(address)
 
     def enter_metro_station(self, station_name):
-        metro_field = self.driver.find_element(*self.metro_station)
+        metro_field = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.metro_station)
+        )
         metro_field.clear()
         metro_field.send_keys(station_name)
+        option = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, f"//div[@class='Dropdown-option' and text()='{station_name}']"))
+        )
+        option.click()
 
     def enter_phone_number(self, phone_number):
         phone_field = self.driver.find_element(*self.phone_number)

@@ -14,11 +14,11 @@ def open_browser():
 @pytest.fixture
 def order_data_1():
     return {
-        "name": "Иван",
-        "surname": "Иванов",
+        "name": "Артём",
+        "surname": "Кривошеин",
         "address": "ул. Ленина, д. 1",
-        "phone": "+77001112233",
-        "metro_station": "Октябрьская"
+        "metro_station": "Черкизовская",
+        "phone": "77078599922"
     }
 
 @pytest.fixture
@@ -27,6 +27,6 @@ def order_data_2():
         "name": "Анна",
         "surname": "Смирнова",
         "address": "ул. Гагарина, д. 5",
-        "phone": "+77005556677",
-        "metro_station": "Таганская"
+        "metro_station": "Сокольники",
+        "phone": "77086431112"
     }
