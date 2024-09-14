@@ -1,4 +1,4 @@
-import time
+import allure
 import pytest
 from page_object.order_samokat_page import OrderSamokatPage
 
@@ -9,6 +9,9 @@ test_data = [
 ]
 
 @pytest.mark.parametrize("order_data",test_data)
+@allure.feature('Создание заказа')
+@allure.story('Проверка создания заказа с разными данными')
+@allure.title('Тест создания заказа с данными: {order_data[name]}, {order_data[surname]}')
 def test_order_samokat_with_data_1(open_browser, order_data):
     order_page = OrderSamokatPage(open_browser)
     order_page.click_cokies_button()
