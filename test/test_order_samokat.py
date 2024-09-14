@@ -3,10 +3,10 @@ import pytest
 from page_object.order_samokat_page import OrderSamokatPage
 
 
+
 test_data = [
     {"name": "Артём", "surname": "Кривошеин", "address": "ул. Ленина, д. 1", "metro_station": "Черкизовская", "phone": "77078599922"},
-    {"name": "Анна", "surname": "Смирнова", "address": "ул. Гагарина, д. 5", "metro_station": "Сокольники", "phone": "77086431112"}
-]
+    {"name": "Анна", "surname": "Смирнова", "address": "ул. Гагарина, д. 5", "metro_station": "Сокольники", "phone": "77086431112"}]
 
 @pytest.mark.parametrize("order_data",test_data)
 @allure.feature('Создание заказа')
