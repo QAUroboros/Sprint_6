@@ -23,7 +23,7 @@ class OrderSamokatPage :
     rent_form = (By.CLASS_NAME, "Dropdown-placeholder")
     dropdown_option = (By.XPATH, "//div[@class='Dropdown-option' and text()='сутки']")
     black_checkbox = (By.ID, "black")
-    order_button_in_rent_page = (By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']")
+    order_button_in_rent_page = (By.XPATH, "//div[@class='Order_Buttons__1xGrp']//button[text()='Заказать']")
     yes_button = (By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Да']")
     order_confirm_text = (By.XPATH, "//div[contains(@class, 'Order_ModalHeader__3FDaJ') and contains(text(), 'Заказ оформлен')]")
     view_status_button = (By.XPATH, "//button[text()='Посмотреть статус']")
@@ -84,6 +84,7 @@ class OrderSamokatPage :
         date_field = self.driver.find_element(*self.delivery_samokat_form)
         date_field.clear()
         date_field.send_keys(date)
+        date_field.send_keys(Keys.ENTER)
 
     def select_data_rent_in_form(self):
         self.driver.find_element(*self.rent_form).click()
@@ -94,7 +95,10 @@ class OrderSamokatPage :
         checkbox.click()
 
     def click_button_in_rent_page (self):
-        self.driver.find_element(*self.order_button_in_rent_page).click()
+        order_button = WebDriverWait(self.driver, 15).until(
+            expected_conditions.element_to_be_clickable(self.order_button_in_rent_page)
+        )
+        order_button.click()
 
     def click_confirm_order(self):
         self.driver.find_element(*self.yes_button).click()
@@ -113,6 +117,9 @@ class OrderSamokatPage :
 
     def click_yandex_logo(self):
         self.driver.find_element(*self.yandex_logo).click()
+        time.sleep(5)
 
     def verify_yandex_page(self):
-        assert "https://dzen.ru/?yredirect=true" in self.driver.current_url, "Страница Яндекса не открылась"
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        assert "dzen.ru" in self.driver.current_url, "Страница Яндекса не открылась"
+        self.driver.close()
