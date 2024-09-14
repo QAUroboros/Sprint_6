@@ -1,8 +1,9 @@
 import time
-from telnetlib import EC
 
+from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 
 
 class OrderSamokatPage :
@@ -48,32 +49,31 @@ class OrderSamokatPage :
         name_field.send_keys(name)
 
     def enter_last_name(self, surname):
-        name_field = self.driver.find_element(*self.surname_form)
-        name_field.clear()
-        name_field.send_keys(surname)
+        surname_field = self.driver.find_element(*self.surname_form)
+        surname_field.clear()
+        surname_field.send_keys(surname)
 
     def enter_address_form(self, address):
-        name_field = self.driver.find_element(*self.address_form)
-        name_field.clear()
-        name_field.send_keys(address)
+        address_field = self.driver.find_element(*self.address_form)
+        address_field.clear()
+        address_field.send_keys(address)
 
     def enter_metro_station(self, station_name):
         metro_field = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.metro_station)
+            expected_conditions.element_to_be_clickable(self.metro_station)
         )
         metro_field.clear()
         metro_field.send_keys(station_name)
-        option = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, f"//div[@class='Dropdown-option' and text()='{station_name}']"))
+        metro_field.send_keys(Keys.RETURN)
+
+    def enter_phone_number(self, number_phone):
+        phone_field = WebDriverWait(self.driver, 30).until(
+            expected_conditions.element_to_be_clickable(self.phone_number)
         )
-        option.click()
-
-    def enter_phone_number(self, phone_number):
-        phone_field = self.driver.find_element(*self.phone_number)
         phone_field.clear()
-        phone_field.send_keys(phone_number)
+        phone_field.send_keys(number_phone)
 
-    def click_button (self):
+    def click_next_button (self):
         self.driver.find_element(*self.button_next_form).click()
 
     def get_rent_header_text(self):
