@@ -64,7 +64,8 @@ class OrderSamokatPage :
         )
         metro_field.clear()
         metro_field.send_keys(station_name)
-        metro_field.send_keys(Keys.RETURN)
+        metro_field.send_keys(Keys.ARROW_DOWN)
+        metro_field.send_keys(Keys.ENTER)
 
     def enter_phone_number(self, number_phone):
         phone_field = WebDriverWait(self.driver, 30).until(

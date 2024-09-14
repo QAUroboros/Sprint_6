@@ -7,6 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 def open_browser():
     driver = webdriver.Firefox()
     driver.get("https://qa-scooter.praktikum-services.ru/")
-    WebDriverWait(driver, 10)
+    driver.implicitly_wait(30)
     yield driver
     driver.quit()
