@@ -1,11 +1,15 @@
 import time
+import allure
 from page_object.main_page_object import MainPage
 from test.conftest import open_browser
 
-
+@allure.feature("Страница FAQ")
+@allure.story("Тесты на проверку вопросов на странице FAQ")
 class TestMainPageFAQ:
 
-    def test_first_faq(self,open_browser):
+    @allure.title("Тест первого вопроса FAQ")
+    @allure.step("Проверка текста для первого вопроса FAQ")
+    def test_first_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("first")
@@ -14,7 +18,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["first"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_second_faq(self,open_browser):
+    @allure.title("Тест второго вопроса FAQ")
+    @allure.step("Проверка текста для второго вопроса FAQ")
+    def test_second_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("second")
@@ -23,7 +29,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["second"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_third_faq(self,open_browser):
+    @allure.title("Тест третьего вопроса FAQ")
+    @allure.step("Проверка текста для третьего вопроса FAQ")
+    def test_third_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("third")
@@ -32,7 +40,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["third"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_fourth_faq(self,open_browser):
+    @allure.title("Тест четвертого вопроса FAQ")
+    @allure.step("Проверка текста для четвертого вопроса FAQ")
+    def test_fourth_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("fourth")
@@ -41,7 +51,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["fourth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_fifth_faq(self,open_browser):
+    @allure.title("Тест пятого вопроса FAQ")
+    @allure.step("Проверка текста для пятого вопроса FAQ")
+    def test_fifth_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("fifth")
@@ -50,7 +62,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["fifth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_sixth_faq(self,open_browser):
+    @allure.title("Тест шестого вопроса FAQ")
+    @allure.step("Проверка текста для шестого вопроса FAQ")
+    def test_sixth_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("sixth")
@@ -59,7 +73,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["sixth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_seventh_faq(self,open_browser):
+    @allure.title("Тест седьмого вопроса FAQ")
+    @allure.step("Проверка текста для седьмого вопроса FAQ")
+    def test_seventh_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("seventh")
@@ -68,7 +84,9 @@ class TestMainPageFAQ:
         expected_text = main_page.expected_texts["seventh"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
-    def test_eighth_faq(self,open_browser):
+    @allure.title("Тест восьмого вопроса FAQ")
+    @allure.step("Проверка текста для восьмого вопроса FAQ")
+    def test_eighth_faq(self, open_browser):
         main_page = MainPage(open_browser)
         main_page.click_cokies_button()
         main_page.click_faq_button("eighth")
@@ -76,4 +94,3 @@ class TestMainPageFAQ:
         panel_text = main_page.get_panel_text("eighth")
         expected_text = main_page.expected_texts["eighth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
-
