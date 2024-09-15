@@ -1,7 +1,7 @@
 import time
 import allure
 from page_object.main_page_object import MainPage
-from test.conftest import open_browser
+from conftest import open_browser
 
 @allure.feature("Страница FAQ")
 @allure.story("Тесты на проверку вопросов на странице FAQ")
