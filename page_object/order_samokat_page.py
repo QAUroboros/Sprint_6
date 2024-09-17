@@ -4,10 +4,11 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from page_object.base_page import BasePage
+from data import BASE_URL
 
 
-class OrderSamokatPage:
-
+class OrderSamokatPage(BasePage):
     order_button_1 = (By.XPATH, "//div[@class='Header_Nav__AGCXC']//button[@class='Button_Button__ra12g']")
     order_button_2 = (By.XPATH, "//div[@class='Home_FinishButton__1_cWm']//button")
     order_header = (By.CLASS_NAME, 'Order_Header__BZXOb')
@@ -25,50 +26,43 @@ class OrderSamokatPage:
     black_checkbox = (By.ID, "black")
     order_button_in_rent_page = (By.XPATH, "//div[@class='Order_Buttons__1xGrp']//button[text()='Заказать']")
     yes_button = (By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Да']")
-    order_confirm_text = (By.XPATH, "//div[contains(@class, 'Order_ModalHeader__3FDaJ') and contains(text(), 'Заказ оформлен')]")
+    order_confirm_text = (
+    By.XPATH, "//div[contains(@class, 'Order_ModalHeader__3FDaJ') and contains(text(), 'Заказ оформлен')]")
     view_status_button = (By.XPATH, "//button[text()='Посмотреть статус']")
     logo_scooter = (By.CSS_SELECTOR, "a.Header_LogoScooter__3lsAR[href='/']")
     yandex_logo = (By.CSS_SELECTOR, "a[href='//yandex.ru']")
 
-
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     @allure.step("Кликнуть на кнопку 'Заказать'")
     def click_order_button(self):
-        self.driver.find_element(*self.order_button_1).click()
+        self.click_element(self.order_button_1)
 
     @allure.step("Получить заголовок заказа")
     def get_order_header_text(self):
-        return self.driver.find_element(*self.order_header).text
+        return self.get_element_text(self.order_header)
 
     @allure.step("Кликнуть на кнопку принятия куки")
     def click_cokies_button(self):
-        self.driver.find_element(*self.cokies_button).click()
+        self.click_element(self.cokies_button)
 
     @allure.step("Ввести имя: {name}")
     def enter_name(self, name):
-        name_field = self.driver.find_element(*self.name_form)
-        name_field.clear()
-        name_field.send_keys(name)
+        self.send_keys(self.name_form, name)
 
     @allure.step("Ввести фамилию: {surname}")
     def enter_last_name(self, surname):
-        surname_field = self.driver.find_element(*self.surname_form)
-        surname_field.clear()
-        surname_field.send_keys(surname)
+        self.send_keys(self.surname_form,surname)
 
     @allure.step("Ввести адрес: {address}")
     def enter_address_form(self, address):
-        address_field = self.driver.find_element(*self.address_form)
-        address_field.clear()
-        address_field.send_keys(address)
+        self.send_keys(self.address_form,address)
 
     @allure.step("Выбрать станцию метро: {station_name}")
     def enter_metro_station(self, station_name):
-        metro_field = WebDriverWait(self.driver, 10).until(
-            expected_conditions.element_to_be_clickable(self.metro_station)
-        )
+        self.scroll_to_element(self.metro_station)
+        metro_field = self.wait_for_element(self.metro_station)
         metro_field.clear()
         metro_field.send_keys(station_name)
         metro_field.send_keys(Keys.ARROW_DOWN)
@@ -76,67 +70,72 @@ class OrderSamokatPage:
 
     @allure.step("Ввести номер телефона: {number_phone}")
     def enter_phone_number(self, number_phone):
-        phone_field = WebDriverWait(self.driver, 30).until(
-            expected_conditions.element_to_be_clickable(self.phone_number)
-        )
-        phone_field.clear()
-        phone_field.send_keys(number_phone)
+        self.send_keys(self.phone_number, number_phone)
+        #phone_field = WebDriverWait(self.driver, 30).until(
+         #   expected_conditions.element_to_be_clickable(self.phone_number)
+        #)
+        #phone_field.clear()
+        #phone_field.send_keys(number_phone)
 
     @allure.step("Кликнуть на кнопку 'Далее'")
-    def click_next_button (self):
-        self.driver.find_element(*self.button_next_form).click()
+    def click_next_button(self):
+        self.click_element(self.button_next_form)
 
     @allure.step("Получить заголовок аренды")
     def get_rent_header_text(self):
-        return self.driver.find_element(*self.order_header).text
+        return self.get_element_text(self.rent_header)
 
     @allure.step("Ввести дату доставки: {date}")
     def enter_delivery_date(self, date):
-        date_field = self.driver.find_element(*self.delivery_samokat_form)
-        date_field.clear()
-        date_field.send_keys(date)
-        date_field.send_keys(Keys.ENTER)
+        self.send_keys(self.delivery_samokat_form, date)
+        self.driver.find_element(*self.delivery_samokat_form).send_keys(Keys.ENTER)
+        #date_field = self.driver.find_element(*self.delivery_samokat_form)
+        #date_field.clear()
+        #date_field.send_keys(date)
+        #date_field.send_keys(Keys.ENTER)
 
     @allure.step("Выбрать длительность аренды")
     def select_data_rent_in_form(self):
-        self.driver.find_element(*self.rent_form).click()
-        self.driver.find_element(*self.dropdown_option).click()
+        self.click_element(self.rent_form)
+        self.click_element(self.dropdown_option)
+        #self.driver.find_element(*self.rent_form).click()
+        #self.driver.find_element(*self.dropdown_option).click()
 
     @allure.step("Выбрать черный цвет самоката")
     def select_black_checkbox(self):
-        checkbox = self.driver.find_element(*self.black_checkbox)
-        checkbox.click()
+        self.click_element(self.black_checkbox)
+        #checkbox = self.driver.find_element(*self.black_checkbox)
+        #checkbox.click()
 
     @allure.step("Кликнуть на кнопку 'Заказать' на странице аренды")
-    def click_button_in_rent_page (self):
-        order_button = WebDriverWait(self.driver, 15).until(
-            expected_conditions.element_to_be_clickable(self.order_button_in_rent_page)
-        )
-        order_button.click()
+    def click_button_in_rent_page(self):
+        self.click_element(self.order_button_in_rent_page)
 
     @allure.step("Подтвердить заказ")
     def click_confirm_order(self):
-        self.driver.find_element(*self.yes_button).click()
+        self.click_element(self.yes_button)
 
     @allure.step("Проверить, что заказ оформлен")
     def is_order_confirmed(self):
-        return self.driver.find_element(*self.order_confirm_text).is_displayed()
+        return self.wait_for_element(self.order_confirm_text).is_displayed()
+        #return self.driver.find_element(*self.order_confirm_text).is_displayed()
 
     @allure.step("Просмотреть статус заказа")
     def click_view_status(self):
-        self.driver.find_element(*self.view_status_button).click()
+        self.wait_for_element(self.view_status_button)
+        self.click_element(self.view_status_button)
 
     @allure.step("Кликнуть на логотип самоката")
     def click_logo_scooter(self):
-        self.driver.find_element(*self.logo_scooter).click()
+        self.click_element(self.logo_scooter)
 
     @allure.step("Проверить, что открылась главная страница")
     def verify_home_page(self):
-        assert "https://qa-scooter.praktikum-services.ru/" in self.driver.current_url, "Главная страница не открылась"
+        assert BASE_URL in self.driver.current_url, "Главная страница не открылась"
 
     @allure.step("Кликнуть на логотип Яндекса")
     def click_yandex_logo(self):
-        self.driver.find_element(*self.yandex_logo).click()
+        self.click_element(self.yandex_logo)
         time.sleep(5)
 
     @allure.step("Проверить, что открылась страница Яндекса")

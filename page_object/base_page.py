@@ -32,3 +32,4 @@ class BasePage:
     @allure.step("Ожидание видимости элемента: {locator}")
     def wait_for_element(self, locator):
         return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
+
