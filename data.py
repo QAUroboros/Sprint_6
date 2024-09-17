@@ -11,3 +11,14 @@ EXPECTED_TEXTS = {
         "eighth": "Да, обязательно. Всем самокатов! И Москве, и Московской области.",
         "first": "Сутки — 400 рублей. Оплата курьеру — наличными или картой."
     }
+
+faq_data = [
+        ("first", EXPECTED_TEXTS["first"]),
+        ("second", EXPECTED_TEXTS["second"]),
+        ("third", EXPECTED_TEXTS["third"]),
+        ("fourth", EXPECTED_TEXTS["fourth"]),
+        ("fifth", EXPECTED_TEXTS["fifth"]),
+        ("sixth", EXPECTED_TEXTS["sixth"]),
+        ("seventh", EXPECTED_TEXTS["seventh"]),
+        ("eighth", EXPECTED_TEXTS["eighth"]),
+    ]
