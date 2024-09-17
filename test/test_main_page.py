@@ -1,8 +1,10 @@
 import time
 import allure
+
+import data
 from page_object.main_page_object import MainPage
 from conftest import open_browser
-
+from data import EXPECTED_TEXTS
 
 @allure.feature("Страница FAQ")
 @allure.story("Тесты на проверку вопросов на странице FAQ")
@@ -16,7 +18,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("first")
         time.sleep(3)
         panel_text = main_page.get_panel_text("first")
-        expected_text = main_page.expected_texts["first"]
+        expected_text = data.EXPECTED_TEXTS["first"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест второго вопроса FAQ")
@@ -27,7 +29,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("second")
         time.sleep(3)
         panel_text = main_page.get_panel_text("second")
-        expected_text = main_page.expected_texts["second"]
+        expected_text = data.EXPECTED_TEXTS["second"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест третьего вопроса FAQ")
@@ -38,7 +40,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("third")
         time.sleep(3)
         panel_text = main_page.get_panel_text("third")
-        expected_text = main_page.expected_texts["third"]
+        expected_text = data.EXPECTED_TEXTS["third"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест четвертого вопроса FAQ")
@@ -49,7 +51,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("fourth")
         time.sleep(3)
         panel_text = main_page.get_panel_text("fourth")
-        expected_text = main_page.expected_texts["fourth"]
+        expected_text = data.EXPECTED_TEXTS["fourth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест пятого вопроса FAQ")
@@ -60,7 +62,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("fifth")
         time.sleep(3)
         panel_text = main_page.get_panel_text("fifth")
-        expected_text = main_page.expected_texts["fifth"]
+        expected_text = data.EXPECTED_TEXTS["fifth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест шестого вопроса FAQ")
@@ -71,7 +73,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("sixth")
         time.sleep(3)
         panel_text = main_page.get_panel_text("sixth")
-        expected_text = main_page.expected_texts["sixth"]
+        expected_text = data.EXPECTED_TEXTS["sixth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест седьмого вопроса FAQ")
@@ -82,7 +84,7 @@ class TestMainPageFAQ:
         main_page.click_faq_button("seventh")
         time.sleep(3)
         panel_text = main_page.get_panel_text("seventh")
-        expected_text = main_page.expected_texts["seventh"]
+        expected_text = data.EXPECTED_TEXTS["seventh"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
 
     @allure.title("Тест восьмого вопроса FAQ")
@@ -93,5 +95,5 @@ class TestMainPageFAQ:
         main_page.click_faq_button("eighth")
         time.sleep(3)
         panel_text = main_page.get_panel_text("eighth")
-        expected_text = main_page.expected_texts["eighth"]
+        expected_text = data.EXPECTED_TEXTS["eighth"]
         assert panel_text == expected_text, f"Текст не соответствует ожидаемому: {panel_text}"
