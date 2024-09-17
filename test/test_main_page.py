@@ -1,9 +1,7 @@
 import allure
 import pytest
-import data
 from page_object.main_page_object import MainPage
 from conftest import open_browser
-from data import EXPECTED_TEXTS
 from data import faq_data
 
 
