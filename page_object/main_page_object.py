@@ -3,10 +3,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from data import BASE_URL
+from page_object.base_page import BasePage
 
 
-class MainPage:
-
+class MainPage(BasePage):
     faq_buttons = {
         "first": (By.ID, "accordion__heading-0"),
         "second": (By.ID, "accordion__heading-1"),
@@ -29,15 +29,14 @@ class MainPage:
         "eighth": (By.ID, "accordion__panel-7")
     }
 
-
     cokies_button = (By.ID, "rcc-confirm-button")
 
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     @allure.step("Кликнуть на кнопку принятия куки")
     def click_cokies_button(self):
-        self.driver.find_element(*self.cokies_button).click()
+        self.click_element(self.cokies_button)
 
     @allure.step("Открываем главную страницу")
     def open_page(self):
@@ -45,13 +44,10 @@ class MainPage:
 
     @allure.step("Кликаем по кнопке FAQ с индексом {index}")
     def click_faq_button(self, index):
-        element = self.driver.find_element(*self.faq_buttons[index])
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.faq_buttons[index]))
-        element.click()
+        element = self.faq_buttons[index]
+        self.scroll_to_element(element)
+        self.click_element(element)
 
     @allure.step("Получаем текст панели FAQ с индексом {index}")
     def get_panel_text(self, index):
-        return WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.faq_panels[index])
-        ).text
+        return self.get_element_text(self.faq_panels[index])
