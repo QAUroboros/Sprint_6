@@ -71,11 +71,6 @@ class OrderSamokatPage(BasePage):
     @allure.step("Ввести номер телефона: {number_phone}")
     def enter_phone_number(self, number_phone):
         self.send_keys(self.phone_number, number_phone)
-        #phone_field = WebDriverWait(self.driver, 30).until(
-         #   expected_conditions.element_to_be_clickable(self.phone_number)
-        #)
-        #phone_field.clear()
-        #phone_field.send_keys(number_phone)
 
     @allure.step("Кликнуть на кнопку 'Далее'")
     def click_next_button(self):
@@ -89,23 +84,15 @@ class OrderSamokatPage(BasePage):
     def enter_delivery_date(self, date):
         self.send_keys(self.delivery_samokat_form, date)
         self.driver.find_element(*self.delivery_samokat_form).send_keys(Keys.ENTER)
-        #date_field = self.driver.find_element(*self.delivery_samokat_form)
-        #date_field.clear()
-        #date_field.send_keys(date)
-        #date_field.send_keys(Keys.ENTER)
 
     @allure.step("Выбрать длительность аренды")
     def select_data_rent_in_form(self):
         self.click_element(self.rent_form)
         self.click_element(self.dropdown_option)
-        #self.driver.find_element(*self.rent_form).click()
-        #self.driver.find_element(*self.dropdown_option).click()
 
     @allure.step("Выбрать черный цвет самоката")
     def select_black_checkbox(self):
         self.click_element(self.black_checkbox)
-        #checkbox = self.driver.find_element(*self.black_checkbox)
-        #checkbox.click()
 
     @allure.step("Кликнуть на кнопку 'Заказать' на странице аренды")
     def click_button_in_rent_page(self):
@@ -118,7 +105,6 @@ class OrderSamokatPage(BasePage):
     @allure.step("Проверить, что заказ оформлен")
     def is_order_confirmed(self):
         return self.wait_for_element(self.order_confirm_text).is_displayed()
-        #return self.driver.find_element(*self.order_confirm_text).is_displayed()
 
     @allure.step("Просмотреть статус заказа")
     def click_view_status(self):
