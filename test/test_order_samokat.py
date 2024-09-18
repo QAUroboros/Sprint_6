@@ -11,11 +11,10 @@ test_data = [
      "phone": "77086431112"}]
 
 @allure.feature('Создание заказа')
+@allure.story('Проверка создания заказа с разными данными')
 class TestOrderSamokat:
 
     @pytest.mark.parametrize("order_data", test_data)
-    @allure.feature('Создание заказа')
-    @allure.story('Проверка создания заказа с разными данными')
     @allure.title('Тест создания заказа с данными: {order_data[name]}, {order_data[surname]}')
     def test_order_samokat_with_data_1(open_browser, order_data,delivery_date):
         order_page = OrderSamokatPage(open_browser)
@@ -39,19 +38,17 @@ class TestOrderSamokat:
 
 
 @allure.feature('Навигация')
+@allure.story('Тесты на навигацию по сайту')
 class TestNavigation:
 
-    @allure.feature('Навигация')
-    @allure.story('Проверка перехода на главную страницу по клику на логотип самоката')
-    def test_navigation_main_click_scooter(open_browser):
+    @allure.title('Проверка перехода на главную страницу по клику на логотип самоката')
+    def test_navigation_main_click_scooter(self,open_browser):
         order_page = OrderSamokatPage(open_browser)
         order_page.click_logo_scooter()
         order_page.verify_home_page()
 
-
-    @allure.feature('Навигация')
-    @allure.story('Проверка перехода на Яндекс.Дзен при клике на логотип Яндекса')
-    def test_navigation_dzen_page(open_browser):
+    @allure.title('Проверка перехода на Яндекс.Дзен при клике на логотип Яндекса')
+    def test_navigation_dzen_page(self,open_browser):
         order_page = OrderSamokatPage(open_browser)
         order_page.click_yandex_logo()
         order_page.verify_yandex_page()

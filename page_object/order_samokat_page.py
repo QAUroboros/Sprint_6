@@ -8,6 +8,7 @@ from data import BASE_URL
 
 
 class OrderSamokatPage(BasePage):
+
     order_button_1 = (By.XPATH, "//div[@class='Header_Nav__AGCXC']//button[@class='Button_Button__ra12g']")
     order_button_2 = (By.XPATH, "//div[@class='Home_FinishButton__1_cWm']//button")
     order_header = (By.CLASS_NAME, 'Order_Header__BZXOb')
