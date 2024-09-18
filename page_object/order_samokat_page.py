@@ -126,5 +126,6 @@ class OrderSamokatPage(BasePage):
     @allure.step("Проверить, что открылась страница Яндекса")
     def verify_yandex_page(self):
         self.switch_to_new_window()
-        assert "dzen.ru" in self.get_current_url(), "Страница Яндекса не открылась"
+        current_url = self.get_current_url()
+        assert "dzen.ru" in current_url, "Страница Яндекса не открылась"
         self.close_current_window()

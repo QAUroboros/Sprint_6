@@ -1,7 +1,7 @@
 import allure
 import pytest
 from page_object.order_samokat_page import OrderSamokatPage
-from conftest import *
+from helpers import get_delivery_date
 
 
 test_data = [
@@ -16,7 +16,7 @@ class TestOrderSamokat:
 
     @pytest.mark.parametrize("order_data", test_data)
     @allure.title('Тест создания заказа с данными: {order_data[name]}, {order_data[surname]}')
-    def test_order_samokat_with_data_1(open_browser, order_data,delivery_date):
+    def test_order_samokat_with_data_1(self, open_browser, order_data):
         order_page = OrderSamokatPage(open_browser)
         order_page.click_cokies_button()
         order_page.click_order_button()
@@ -28,6 +28,7 @@ class TestOrderSamokat:
         order_page.click_next_button()
         rent_header_text = order_page.get_rent_header_text()
         assert rent_header_text, "Заголовок страницы аренды не найден"
+        delivery_date = get_delivery_date()
         order_page.enter_delivery_date(delivery_date)
         order_page.select_data_rent_in_form()
         order_page.select_black_checkbox()
