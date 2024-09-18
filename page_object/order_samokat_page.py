@@ -1,4 +1,3 @@
-import time
 import allure
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
@@ -122,7 +121,6 @@ class OrderSamokatPage(BasePage):
     @allure.step("Кликнуть на логотип Яндекса")
     def click_yandex_logo(self):
         self.click_element(self.yandex_logo)
-        time.sleep(5)
 
     @allure.step("Проверить, что открылась страница Яндекса")
     def verify_yandex_page(self):
