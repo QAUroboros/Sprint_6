@@ -49,3 +49,7 @@ class BasePage:
     def send_special_key(self, locator, key):
         element = self.wait_for_element(locator)
         element.send_keys(key)
+
+    @allure.step("Ожидание изменения URL, содержащего текст: {text}")
+    def wait_for_url_contains(self, text):
+        WebDriverWait(self.driver, 30).until(expected_conditions.url_contains(text))
