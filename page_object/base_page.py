@@ -9,7 +9,7 @@ class BasePage:
 
     @allure.step("Прокрутить к элементу: {locator}")
     def scroll_to_element(self, locator):
-        element = WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
+        element = self.wait_for_element(locator)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step("Кликнуть на элемент: {locator}")
@@ -31,7 +31,7 @@ class BasePage:
 
     @allure.step("Ожидание видимости элемента: {locator}")
     def wait_for_element(self, locator):
-        return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
+        return WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step("Переключиться на новое окно браузера")
     def switch_to_new_window(self):

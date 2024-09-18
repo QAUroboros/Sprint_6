@@ -2,6 +2,7 @@ import allure
 import pytest
 from page_object.order_samokat_page import OrderSamokatPage
 from helpers import get_delivery_date
+from conftest import open_browser
 
 
 test_data = [
@@ -43,13 +44,13 @@ class TestOrderSamokat:
 class TestNavigation:
 
     @allure.title('Проверка перехода на главную страницу по клику на логотип самоката')
-    def test_navigation_main_click_scooter(self,open_browser):
+    def test_navigation_main_click_scooter(self, open_browser):
         order_page = OrderSamokatPage(open_browser)
         order_page.click_logo_scooter()
         order_page.verify_home_page()
 
     @allure.title('Проверка перехода на Яндекс.Дзен при клике на логотип Яндекса')
-    def test_navigation_dzen_page(self,open_browser):
+    def test_navigation_dzen_page(self, open_browser):
         order_page = OrderSamokatPage(open_browser)
         order_page.click_yandex_logo()
         order_page.verify_yandex_page()
