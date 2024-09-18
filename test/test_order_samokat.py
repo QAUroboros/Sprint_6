@@ -32,8 +32,9 @@ def test_order_samokat_with_data_1(open_browser, order_data,delivery_date):
     order_page.select_black_checkbox()
     order_page.click_button_in_rent_page()
     order_page.click_confirm_order()
-    assert order_page.is_order_confirmed(), "Заказ не был подтвержден"
     order_page.click_view_status()
+    assert order_page.is_order_confirmed(), "Заказ не был подтвержден"
+
 
 
 @allure.feature('Навигация')
