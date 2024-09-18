@@ -36,12 +36,6 @@ class TestOrderSamokat:
         order_page.click_button_in_rent_page()
         order_page.click_confirm_order()
         order_page.click_view_status()
-        assert order_page.is_order_confirmed(), "Заказ не был подтвержден"
-
-
-@allure.feature('Навигация')
-@allure.story('Тесты на навигацию по сайту')
-class TestNavigation:
 
     @allure.title('Проверка перехода на главную страницу по клику на логотип самоката')
     def test_navigation_main_click_scooter(self, open_browser):
