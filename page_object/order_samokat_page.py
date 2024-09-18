@@ -82,7 +82,7 @@ class OrderSamokatPage(BasePage):
     @allure.step("Ввести дату доставки: {date}")
     def enter_delivery_date(self, date):
         self.send_keys(self.delivery_samokat_form, date)
-        self.driver.find_element(*self.delivery_samokat_form).send_keys(Keys.ENTER)
+        self.send_special_key(self.delivery_samokat_form, Keys.ENTER)
 
     @allure.step("Выбрать длительность аренды")
     def select_data_rent_in_form(self):
@@ -116,7 +116,7 @@ class OrderSamokatPage(BasePage):
 
     @allure.step("Проверить, что открылась главная страница")
     def verify_home_page(self):
-        assert BASE_URL in self.driver.current_url, "Главная страница не открылась"
+        assert BASE_URL in self.get_current_url(), "Главная страница не открылась"
 
     @allure.step("Кликнуть на логотип Яндекса")
     def click_yandex_logo(self):
@@ -124,6 +124,6 @@ class OrderSamokatPage(BasePage):
 
     @allure.step("Проверить, что открылась страница Яндекса")
     def verify_yandex_page(self):
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-        assert "dzen.ru" in self.driver.current_url, "Страница Яндекса не открылась"
-        self.driver.close()
+        self.switch_to_new_window()
+        assert "dzen.ru" in self.get_current_url(), "Страница Яндекса не открылась"
+        self.close_current_window()

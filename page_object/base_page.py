@@ -33,3 +33,16 @@ class BasePage:
     def wait_for_element(self, locator):
         return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
 
+    def switch_to_new_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+
+    def get_current_url(self):
+        return self.driver.current_url
+
+    def close_current_window(self):
+        self.driver.close()
+
+    @allure.step("Отправить специальную клавишу: {key} в элемент: {locator}")
+    def send_special_key(self, locator, key):
+        element = WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
+        element.send_keys(key)
