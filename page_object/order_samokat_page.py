@@ -128,6 +128,4 @@ class OrderSamokatPage(BasePage):
         self.switch_to_new_window()
         self.wait_for_url_contains("dzen.ru")
         current_url = self.get_current_url()
-        allure.attach(current_url, name="Текущий URL", attachment_type=allure.attachment_type.TEXT)
-        print(f"Текущий URL: {current_url}")
         assert "dzen.ru" in current_url, "Страница Яндекса не открылась"
