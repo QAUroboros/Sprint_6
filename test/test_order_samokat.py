@@ -35,7 +35,8 @@ class TestOrderSamokat:
         order_page.select_black_checkbox()
         order_page.click_button_in_rent_page()
         order_page.click_confirm_order()
-        order_page.click_view_status()
+        order_header_text = order_page.order_confirm_text()
+        assert order_header_text, "Заголовок не найден"
 
     @allure.title('Проверка перехода на главную страницу по клику на логотип самоката')
     def test_navigation_main_click_scooter(self, open_browser):
